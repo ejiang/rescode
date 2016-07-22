@@ -1,19 +1,3 @@
-"""
-Encode
-
-We go from
-
-y = S @ H @ x
-"""
-
-# 20-length
-# 9 measurements
-# 5-sparse
-
-# N 20 K 5
-# 9 R
-# n = 9/5
-
 import numpy as np
 
 N = 20
@@ -67,7 +51,6 @@ class Decoder(object):
 				# actually, would it work?
 
 				if np.isclose(k, np.round(k)):
-					print(k)
 					singletonlist.append(k)
 					edgelist.append((i, k))
 			i += 1
@@ -103,7 +86,6 @@ class Decoder(object):
 				Y[c] -= X[variable] *(Scol ** c)
 
 class Encoder(object):
-	"""docstring for Encoder"""
 	def __init__(self, N, K, R):
 		self.N = N # number of variable nodes
 		self.K = K # sparsity
@@ -117,7 +99,6 @@ class Encoder(object):
 		count = 0
 		for row in H * X:
 			res = S @ row
-			# Python 3.5 syntax
 			Y[count] = res
 			count += 1
 		return Y
@@ -149,3 +130,4 @@ class Encoder(object):
 		first = np.vstack((S1, S2))
 		second = np.random.normal(0, 1, N)
 		return first * second
+
